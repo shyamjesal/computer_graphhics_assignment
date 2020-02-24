@@ -177,27 +177,13 @@ void init(int *argc, char **argv, int scale)
 
 void getWindowLimits(Node *root)
 {
-    Node *temp = root;
-    while(temp && temp->getLeftChild())
-    {
-        auto coordinates = temp->getCoordinates();
-        if(xMin > coordinates.first) xMin = coordinates.first;
-        if(yMin > coordinates.second) yMin = coordinates.second;
-        if(xMax < coordinates.first) xMax = coordinates.first;
-        if(yMax < coordinates.second) yMax = coordinates.second;
-        temp = temp->getLeftChild();
-    }
-
-    temp = root;
-    while(temp && temp->getRightChild()) {
-    	auto coordinates = temp->getCoordinates();
-        if(xMin > coordinates.first) xMin = coordinates.first;
-        if(yMin > coordinates.second) yMin = coordinates.second;
-        if(xMax < coordinates.first) xMax = coordinates.first;
-        if(yMax < coordinates.second) yMax = coordinates.second;
-        temp = temp->getRightChild();	
-    }
-
+    auto coordinates = root->getCoordinates();
+    if(xMin > coordinates.first) xMin = coordinates.first;
+    if(yMin > coordinates.second) yMin = coordinates.second;
+    if(xMax < coordinates.first) xMax = coordinates.first;
+    if(yMax < coordinates.second) yMax = coordinates.second;
+    if(root->getLeftChild()) getWindowLimits(root->getLeftChild());
+    if(root->getRightChild()) getWindowLimits(root->getRightChild());
 }
 
 void drawTree(Node *root, int scale, int *argc, char **argv)

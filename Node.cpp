@@ -20,14 +20,6 @@ Node::Node(int v, Node leftChild, Node rightChild)
     y = -1;
 }
 
-// bool Node::leftChildExists() {
-// 	if(lChild) return true;
-// }
-
-// bool Node::rightChildExists() {
-// 	if(rChild) return true;
-// }
-
 Node *Node::getLeftChild()
 {
     return lChild;

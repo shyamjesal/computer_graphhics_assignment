@@ -5,6 +5,11 @@
 #include "Node.h"
 #include "GLUT.h"
 
+/**
+* Compile using: g++ Main.cpp Node.cpp GLUT.cpp -g -lglut -lGL -lGLU
+* You can remove the -g option if you are not debugging
+*/
+
 using namespace std;
 
 vector<int> rightmost;	//Stores the current rightmost element at each level.
@@ -72,14 +77,14 @@ void setCoordinates(Node *root, int x, int y) {
 	else if(x < rightmost[y] + minSeparation) x = rightmost[y] + minSeparation;
 	if(root->getLeftChild()) {
 		Node *lChild = root->getLeftChild();
-		setCoordinates(lChild, x - 1, y + 1);
+		setCoordinates(lChild, x - minSeparation/2, y + 1);
 	} 
 	if(root->getRightChild()) {
 		Node *rChild = root->getRightChild();
-		setCoordinates(rChild, x + 1, y + 1);
+		setCoordinates(rChild, x + minSeparation/2, y + 1);
 	}
 	if(root->getLeftChild() && root->getRightChild()) x = max(x, (root->getLeftChild()->getCoordinates().first + root->getRightChild()->getCoordinates().first)/2);
-	else if (root->getLeftChild()) x = max(x, root->getLeftChild()->getCoordinates().first + 1);
+	else if (root->getLeftChild()) x = max(x, root->getLeftChild()->getCoordinates().first + minSeparation/2);
 	rightmost[y] = x;
 
 	//Store the value to be drawn
@@ -93,6 +98,10 @@ void setCoordinates(Node *root) {
 int main(int argc, char ** argv)
 {
     Node *root = createBSTfromInput();
+    if(!root) {
+    	cout << "No Nodes!\n";
+    	return 0;
+    }
     setCoordinates(root);
     drawTree(root, scale, &argc, argv);
     return 0;
