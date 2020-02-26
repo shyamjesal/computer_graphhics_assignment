@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
+#include <chrono>
 
 #include "Node.h"
 #include "GLUT.h"
@@ -16,6 +17,9 @@ vector<int> rightmost;	//Stores the current rightmost element at each level.
 int minSeparation = 45;	//Minimum separation between two node horizontally.
 int verticalDistance = 45;
 int scale = 1;
+auto start = chrono::high_resolution_clock::now(); 
+auto stop = chrono::high_resolution_clock::now(); 
+
 
 /**
  * @brief      Finds an insert position for the new node in the BST.
@@ -88,6 +92,7 @@ Node *createBSTfromInput()
     }
     cout << "Scale the image by a factor of (int): ";
     cin >> scale;
+    start = chrono::high_resolution_clock::now(); 
     Node *root = makeBSTFromArray(array);
     return root;
 }
@@ -143,6 +148,10 @@ int main(int argc, char ** argv)
     	return 0;
     }
     setCoordinates(root);
+    stop = chrono::high_resolution_clock::now(); 
+    auto duration = chrono::duration_cast<chrono::microseconds>(stop - start); 
+    cout << duration.count() << " microseconds" << endl; 
+
     drawTree(root, scale, &argc, argv);
     return 0;
 }
