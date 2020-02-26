@@ -11,7 +11,10 @@ using namespace std;
 
 const int radius = 15;
 
-
+/*
+* Gives a beautiful representation of the tree 
+* denoted by the pointer to root.
+*/
 void drawTree(Node *root, int scale, int *argc, char** argv);
 
 #endif
