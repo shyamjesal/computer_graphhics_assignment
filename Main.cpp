@@ -98,11 +98,11 @@ Node *createBSTfromInput()
 }
 
 /**
- * @brief      Sets the coordinates.
+ * @brief      Sets coordinates of each node in the tree to produce a tidier drawing of the tree based on the TR algorithm
  *
- * @param      root  The root
- * @param[in]  x     The new value
- * @param[in]  y     The new value
+ * @param      root  The root node of the subtree being drawn
+ * @param[in]  x     The minimum X value where the new node should be placed
+ * @param[in]  y     The Y value for the new node to be placed
  */
 void setCoordinates(Node *root, int x, int y) {
 	if(rightmost.size() < y + 1) rightmost.push_back(x);
@@ -124,12 +124,12 @@ void setCoordinates(Node *root, int x, int y) {
 } 
 
 /**
- * @brief      Sets the coordinates.
+ * @brief      Sets coordinates of each node in the tree to produce a tidier drawing of the tree based on the TR algorithm
  *
- * @param      root  The root fo the tree
+ * @param      root  The root node of the subtree being drawn
  */
 void setCoordinates(Node *root) {
-	setCoordinates(root, 0, 0);
+	setCoordinates(root, 0, 0);	//Root stays at (0,0)
 }
 
 /**

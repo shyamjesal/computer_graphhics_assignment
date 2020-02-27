@@ -39,22 +39,22 @@ public:
     // bool rightChildExists();
 
     /**
-    *   Returns the left child of the current node
+    *   @return Returns the left child of the current node
     */
     Node *getLeftChild();
 
     /**
-    *   Returns the right child of the current node
+    *   @return Returns the right child of the current node
     */
     Node *getRightChild();
 
     /**
-    *   Returns the value of the current node
+    *   @return Returns the value of the current node
     */
     int getVal();
 
     /**
-    *   Returns a pair of integers which are the coordinate values of the node
+    *   @return Returns a pair of integers which are the coordinate values of the node
     */
     pair<int, int> getCoordinates();
 
